@@ -1,5 +1,4 @@
 // Initialize Game Object with properties and methods
-console.log("reinit");
 var gameObj = {
   // State
   playerGrid: [],
@@ -25,7 +24,6 @@ var gameObj = {
     gameObj.initializeState();
   },
   inputSettings: function (event) {
-    console.log("hi");
     event.preventDefault();
     gameObj.player1.name = document.querySelector("#player1-name").value
       ? document.querySelector("#player1-name").value
