@@ -19,10 +19,12 @@ var gameObj = {
     playerIcon: "cross",
   },
   //Methods
+  //Initialization Methiods
   initializeGame: function () {
     document.querySelector("#game-menu button").onclick = gameObj.inputSettings;
     gameObj.initializeState();
   },
+  // Setting States
   inputSettings: function (event) {
     event.preventDefault();
     gameObj.player1.name = document.querySelector("#player1-name").value
@@ -71,6 +73,7 @@ var gameObj = {
     }
     return grid;
   },
+  //Render Methods
   renderTurnHeading: (player) =>
     (gameObj.DOMTurnHeading.innerText =
       gameObj[player].name + "'s Turn - " + gameObj.numOfTurns + " move left"),
@@ -92,23 +95,7 @@ var gameObj = {
     square.classList.remove("unselected-square");
     square.classList.add(gameObj[gameObj.currentPlayer].playerIcon);
   },
-  resets: function () {
-    gameObj.numOfTurns = gameObj.numOfSquares - 2;
-    gameObj.renderTurnHeading(gameObj.currentPlayer);
-    gameObj.gameStatus = "ongoing";
-    gameObj.playerGrid = [];
-    for (i = 0; i < gameObj.numOfSquares; i++) {
-      let row = [];
-      for (j = 0; j < gameObj.numOfSquares; j++) {
-        row.push(0);
-        let square = document.getElementById(i + "," + j);
-        square.classList.remove("cross");
-        square.classList.remove("circle");
-        square.classList.add("unselected-square");
-      }
-      gameObj.playerGrid.push(row);
-    }
-  },
+  // Updating States
   updateTurn: function () {
     gameObj.numOfTurns = gameObj.numOfSquares - 2;
     gameObj.currentPlayer =
@@ -143,6 +130,7 @@ var gameObj = {
     if (tieCheck) return "tie";
     return "ongoing";
   },
+  // Events
   handleClicks: function (event) {
     event.stopPropagation();
     let square = event.target;
@@ -162,7 +150,25 @@ var gameObj = {
     else if (gameObj.gameStatus === "tie") gameObj.renderTieHeading();
     else if (gameObj.numOfTurns === 0) gameObj.updateTurn();
   },
+  // Resetting Game
+  resets: function () {
+    gameObj.numOfTurns = gameObj.numOfSquares - 2;
+    gameObj.renderTurnHeading(gameObj.currentPlayer);
+    gameObj.gameStatus = "ongoing";
+    gameObj.playerGrid = [];
+    for (i = 0; i < gameObj.numOfSquares; i++) {
+      let row = [];
+      for (j = 0; j < gameObj.numOfSquares; j++) {
+        row.push(0);
+        let square = document.getElementById(i + "," + j);
+        square.classList.remove("cross");
+        square.classList.remove("circle");
+        square.classList.add("unselected-square");
+      }
+      gameObj.playerGrid.push(row);
+    }
+  },
 };
 
-// Initialize Game
+// Initialize
 gameObj.initializeGame();
