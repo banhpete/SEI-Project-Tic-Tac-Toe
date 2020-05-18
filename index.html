@@ -6,10 +6,46 @@
     <title>Document</title>
     <link rel="stylesheet" href="main.css" />
     <script type="text/javascript" src="main.js" defer></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap"
+      rel="stylesheet"
+    />
+    <title>Tic Tac Toe</title>
   </head>
   <body>
-    <h1 id="game-title">A Game of Tic Tac Toe</h1>
-    <h2 id="player-turn">Player 1 Turn</h2>
+    <div id="game-menu">
+      <h2>Game Settings</h2>
+      <form>
+        <div class="form-row">
+          <label>Enter Player 1 Name</label>
+          <input id="player1-name" name="player1-name" type="text" />
+        </div>
+        <div class="form-row">
+          <label>Enter Player 2 Name</label>
+          <input id="player2-name" name="player2-name" type="text" />
+        </div>
+        <fieldset>
+          <legend>Select the Length and Width of Grid:</legend>
+          <div>
+            <input id="three" name="gridsize" type="radio" value="3" />
+            <label for="three"> 3x3 </label>
+          </div>
+          <div>
+            <input id="four" name="gridsize" type="radio" value="4" />
+            <label for="four"> 4x4 </label>
+          </div>
+          <div>
+            <input id="five" name="gridsize" type="radio" value="5" />
+            <label for="five"> 5x5 </label>
+          </div>
+        </fieldset>
+        <button>Enter</button>
+        <p>If no values are entered, default settings will be picked</p>
+      </form>
+    </div>
+    <h1 id="game-title">TIC TAC TOE</h1>
+    <h2 id="player-turn"></h2>
     <div id="game-board"></div>
+    <button id="reset">Reset Game</button>
   </body>
 </html>

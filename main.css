@@ -1,45 +1,161 @@
+:root {
+  --text-color: radial-gradient(ellipse at top,  #eee 15%, #2fb4e1 30%, #08679f 60%);
+  --background-color: rgba(0,0,0,0.7);
+}
+
 * {
+  font-family: 'Bowlby One SC', cursive;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html{
-  height:100%;
+body{
+  background-image: url('Images/Background.jpg');
+  background-origin: border-box;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
 }
 
-body{
-  height:100%;
+body::before{
+  background-color: var(--background-color);
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100vw;
+  z-index: -1;
 }
 
 #game-title{
-  margin: 15px 0 30px 0;
+  padding: 10px 0;
+  margin: 0 0 15px 0;
+  font-size:50px;
+  letter-spacing:3px;
   text-align:center;
+  background: var(--text-color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-#player-turn{
-  margin: 15px 0 30px 0;
+h2{
+  margin: 10px 0 30px 0;
+  font-size:40px;
+  letter-spacing:3px;
+  text-align:center;
+  background: var(--text-color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   text-align:center;
 }
 
 #game-board{
-  width: 50%;
-  height: 75%;
+  width: 30vw;
+  height: 30vw;
   display:flex;
   flex-wrap:wrap;
   margin: 0px auto;
-  border: 2px solid red;
 }
 
 .unselected-square:hover{
-  background-color:lightblue;
+  background-color:rgba(173, 216, 230, 0.4);
   cursor:pointer;
 }
 
 .cross{
-  background-color:red;
+  background-image:url(images/Skeletor.png);
+  background-size:cover;
 }
 
 .circle{
-  background-color: green;
+  background-image:url(images/heman.jpg);
+  background-size:cover;
+}
+
+button{
+  display: block;
+  font-size:20px;
+  font-weight:500;
+  margin: 30px auto;
+  padding: 15px 20px;
+  border-radius: 5px;
+  background-color: lightblue;
+  border: 0px;
+}
+
+button:focus{
+  outline: none;
+}
+
+button:hover:active{
+  background-color: pink;
+}
+
+button:hover{
+  background-color: white;
+}
+
+#game-menu{
+  position: absolute;
+  text-align:center;
+  width: 50vw;
+  height: 42vw;
+  top: 75px;
+  border: 3px solid darkgray;
+  border-radius:5px;
+  background-color: rgba(20,20,20,0.95);
+  left: 25%;
+  padding:25px;
+}
+
+#game-menu p{
+  background: var(--text-color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.form-row{
+  margin:20px;
+  display:flex;
+  justify-content: space-around;
+}
+
+#game-menu label{
+  margin: 20px 0;
+  font-size:28px;
+  display:inline-block;
+  background: var(--text-color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#game-menu [type="text"]{
+  background-color: lightblue;
+  margin: 20px;
+  border: 1px solid skyblue;
+  border-radius: 5px;
+  font-size:18px;
+}
+
+fieldset{
+  border: 0px;
+  display:flex;
+  justify-content:center;
+  margin: 30px 0 15px 0;
+}
+
+input[type=radio]{
+  visibility:hidden;
+}
+
+input[type=radio]:checked + label{
+  padding:5px;
+  border: 2px yellow solid;
+}
+
+legend{
+  font-size:28px;
+  background: var(--text-color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
