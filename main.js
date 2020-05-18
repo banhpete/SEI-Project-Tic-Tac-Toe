@@ -22,7 +22,6 @@ var gameObj = {
   //Initialization Methiods
   initializeGame: function () {
     document.querySelector("#game-menu button").onclick = gameObj.inputSettings;
-    gameObj.initializeState();
   },
   // Setting States
   inputSettings: function (event) {
@@ -74,9 +73,10 @@ var gameObj = {
     return grid;
   },
   //Render Methods
-  renderTurnHeading: (player) =>
-    (gameObj.DOMTurnHeading.innerText =
-      gameObj[player].name + "'s Turn - " + gameObj.numOfTurns + " move left"),
+  renderTurnHeading: (player) => {
+    gameObj.DOMTurnHeading.innerText =
+      gameObj[player].name + "'s Turn - " + gameObj.numOfTurns + " move left";
+  },
   renderTieHeading: () =>
     (gameObj.DOMTurnHeading.innerText = "It's a Tie! Restart the game!"),
   renderWinHeading: (player) =>
