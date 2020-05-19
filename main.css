@@ -11,21 +11,14 @@
 }
 
 body{
-  background-image: url('Images/Background.jpg');
-  background-origin: border-box;
+  background:  linear-gradient(to right, rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url('Images/Background.jpg');
+  background-origin: content-box;
   background-repeat: no-repeat;
   background-position: center top;
-  background-size: cover;
+  background-size: 100vw 100vh;
 }
 
-body::before{
-  background-color: var(--background-color);
-  content: '';
-  position: absolute;
-  height: 100%;
-  width: 100vw;
-  z-index: -1;
-}
+
 
 #game-title{
   padding: 5px 0;
@@ -174,10 +167,10 @@ legend{
 
 }
 
-@media (max-width: 500px){
+@media (max-width: 900px){
 
   body{
-    background-size: auto 650px;
+    background-size: auto 1000px;
     }
 
   #game-board{
