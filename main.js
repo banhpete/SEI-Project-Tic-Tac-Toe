@@ -5,7 +5,10 @@ The flow of code is the following:
   - when there area any clicks, it will run update state methods and render methods
   - the update state methods also checker for the winner, if there is no winner, the game continues
   - there is a reset method to reset state and the DOM
+
+Another thing to note is that I did not use "this" at all, this might have made the code easier to read, but I did not realize I could use it at the time.
 */
+
 // Initialize Game Object with properties and methods
 var gameObj = {
   // Defining State
