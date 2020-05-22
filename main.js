@@ -1,6 +1,14 @@
+/*
+The flow of code is the following:
+  - gameObj is initialized
+  - initialization methods run and event handler is set for clicks
+  - when there area any clicks, it will run update state methods and render methods
+  - the update state methods also checker for the winner, if there is no winner, the game continues
+  - there is a reset method to reset state and the DOM
+*/
 // Initialize Game Object with properties and methods
 var gameObj = {
-  // State
+  // Defining State
   playerGrid: [],
   gameStatus: "Ongoing",
   currentPlayer: "player1",
@@ -18,13 +26,14 @@ var gameObj = {
     turnValue: -1,
     playerIcon: "cross",
   },
-  //Methods
-  //Initialization Methiods
+
+  /*------ Initialization Methods ------*/
   initializeGame: function () {
     document.querySelector("#game-menu button").onclick = gameObj.inputSettings;
   },
-  // Setting States
+
   inputSettings: function (event) {
+    // This is grabbing values from the setting menu or setting default values
     event.preventDefault();
     gameObj.player1.name = document.querySelector("#player1-name").value
       ? document.querySelector("#player1-name").value
@@ -46,21 +55,24 @@ var gameObj = {
     );
     gameObj.initializeState();
   },
+
   initializeState: function () {
-    // Setting up state
+    // Adding values to state
     gameObj.DOMGameBoard = document.getElementById("game-board");
     gameObj.DOMTurnHeading = document.getElementById("player-turn");
     gameObj.numOfTurns = gameObj.numOfSquares - 2;
     gameObj.playerGrid = gameObj.createGrid(gameObj.numOfSquares);
 
-    // Rendering Heading
+    // Render Heading
     gameObj.renderTurnHeading(gameObj.currentPlayer);
 
     // Adding Event Listeners
     gameObj.DOMGameBoard.addEventListener("click", gameObj.handleClicks);
     document.getElementById("reset").onclick = gameObj.resets;
   },
+
   createGrid: function (gridLength) {
+    // Create the 2D Array and rendering it to the DOM
     let grid = [];
     for (i = 0; i < gridLength; i++) {
       let row = [];
@@ -72,16 +84,20 @@ var gameObj = {
     }
     return grid;
   },
-  //Render Methods
+
+  /*------ Render Methods ------*/
   renderTurnHeading: (player) => {
     gameObj.DOMTurnHeading.innerText =
       gameObj[player].name + "'s Turn - " + gameObj.numOfTurns + " move left";
   },
+
   renderTieHeading: () =>
     (gameObj.DOMTurnHeading.innerText = "It's a Tie! Restart the game!"),
+
   renderWinHeading: (player) =>
     (gameObj.DOMTurnHeading.innerText =
       gameObj[player].name + " Won the Game!"),
+
   renderSquare: function (i, j) {
     let square = document.createElement("div");
     square.style.height = `calc(100%/${gameObj.numOfSquares})`;
@@ -91,20 +107,24 @@ var gameObj = {
     square.id = i + "," + j;
     this.DOMGameBoard.appendChild(square);
   },
+
   reRenderSquare: function (square) {
     square.classList.remove("unselected-square");
     square.classList.add(gameObj[gameObj.currentPlayer].playerIcon);
   },
-  // Updating States
+
+  /*------ Update State Methods ------*/
   updateTurn: function () {
     gameObj.numOfTurns = gameObj.numOfSquares - 2;
     gameObj.currentPlayer =
       gameObj.currentPlayer === "player1" ? "player2" : "player1";
     gameObj.renderTurnHeading(gameObj.currentPlayer);
   },
+
   updateGrid: function (row, column) {
     gameObj.playerGrid[row][column] = gameObj[gameObj.currentPlayer].turnValue;
   },
+
   updateGameStatus: function () {
     let tieCheck = 1;
     let diagSum1 = 0;
@@ -130,7 +150,8 @@ var gameObj = {
     if (tieCheck) return "tie";
     return "ongoing";
   },
-  // Events
+
+  /*------ Event Methods ------*/
   handleClicks: function (event) {
     event.stopPropagation();
     let square = event.target;
@@ -150,7 +171,8 @@ var gameObj = {
     else if (gameObj.gameStatus === "tie") gameObj.renderTieHeading();
     else if (gameObj.numOfTurns === 0) gameObj.updateTurn();
   },
-  // Resetting Game
+
+  /*------ Reset Method ------*/
   resets: function () {
     gameObj.numOfTurns = gameObj.numOfSquares - 2;
     gameObj.renderTurnHeading(gameObj.currentPlayer);
